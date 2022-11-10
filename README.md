@@ -37,7 +37,7 @@ sampctl package install Veseon/samp-zones
 Include in your code and begin using the library:
 
 ```pawn
-#include <samp-zones>
+#include <zones>
 ```
 
 ## Usage
