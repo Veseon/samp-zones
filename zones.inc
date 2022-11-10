@@ -453,7 +453,7 @@ static const sc_gZoneData[][E_ZONE] = {
 	{!"Willowfield",                2541.70,-2059.20,-89.00,2703.50,-1941.40,110.90},
 	{!"Yellow Bell Station",        1377.40,2600.40,-21.90,1492.40,2687.30,78.00},
 
-//  Main Zones
+//	Main Zones
 	{!"Los Santos",                	44.60,-2892.90,-242.90,2997.00,-768.00,900.00}, // 356
 	{!"Las Venturas",               869.40,596.30,-242.90,2997.00,2993.80,900.00},
 	{!"Bone County",                -480.50,596.30,-242.90,869.40,2993.80,900.00},
@@ -504,7 +504,7 @@ hook OnScriptInit()
 	}
 
 	// Generate unique (more like random?) identifier for streamer extra id.
-    sc_gZoneUniqueId = E_STREAMER_CUSTOM(random(2^31 - 1));
+	sc_gZoneUniqueId = E_STREAMER_CUSTOM(random(2^31 - 1));
 
 	new bool:populateData = false;
 	if(sc_gZoneDatabase)
