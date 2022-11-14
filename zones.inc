@@ -584,13 +584,16 @@ hook OnPlayerEnterDynArea(playerid, STREAMER_TAG_AREA:areaid)
 			sc_gPlayerLastMainZone[playerid] = areaid;
 		}
 		#if defined OnPlayerEnterZone
-			OnPlayerEnterZone(playerid, Zone:Streamer_GetIntData(STREAMER_TYPE_AREA, areaid, sc_gZoneUniqueId), !priority);
+			if(priority || (!priority && !IsPlayerInDynamicArea(playerid, sc_gPlayerLastZone[playerid])))
+			{
+				OnPlayerEnterZone(playerid, Zone:Streamer_GetIntData(STREAMER_TYPE_AREA, areaid, sc_gZoneUniqueId));
+			}
 		#endif
 	}
 }
 
 #if defined OnPlayerEnterZone
-	forward OnPlayerEnterZone(playerid, Zone:zoneid, bool:main);
+	forward OnPlayerEnterZone(playerid, Zone:zoneid);
 #endif
 
 //---------------------------------------------------------------------------------------------------
@@ -599,13 +602,22 @@ hook OnPlayerLeaveDynArea(playerid, STREAMER_TAG_AREA:areaid)
 	#if defined OnPlayerLeaveZone
 		if(Streamer_HasIntData(STREAMER_TYPE_AREA, areaid, sc_gZoneUniqueId))
 		{
-			OnPlayerLeaveZone(playerid, Zone:Streamer_GetIntData(STREAMER_TYPE_AREA, areaid, sc_gZoneUniqueId), !Streamer_GetIntData(STREAMER_TYPE_AREA, areaid, E_STREAMER_PRIORITY));
+			#if defined OnPlayerEnterZone
+				if(IsPlayerInDynamicArea(playerid, sc_gPlayerLastMainZone[playerid]))
+				{
+					OnPlayerEnterZone(playerid, Zone:Streamer_GetIntData(STREAMER_TYPE_AREA, sc_gPlayerLastMainZone[playerid], sc_gZoneUniqueId));
+					return;
+				}
+				OnPlayerLeaveZone(playerid, Zone:Streamer_GetIntData(STREAMER_TYPE_AREA, areaid, sc_gZoneUniqueId));
+			#else
+				OnPlayerLeaveZone(playerid, Zone:Streamer_GetIntData(STREAMER_TYPE_AREA, areaid, sc_gZoneUniqueId));
+			#endif
 		}
 	#endif
 }
 
 #if defined OnPlayerLeaveZone
-	forward OnPlayerLeaveZone(playerid, Zone:zoneid, bool:main);
+	forward OnPlayerLeaveZone(playerid, Zone:zoneid);
 #endif
 //---------------------------------------------------------------------------------------------------
 

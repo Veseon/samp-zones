@@ -51,8 +51,8 @@ bool:Get3DZone(&Zone:zoneid, Float:x, Float:y, Float:z);
 bool:GetZoneName(Zone:zoneid, dest[], maxlength = sizeof dest);
 
 // Callbacks:
-forward OnPlayerEnterZone(playerid, Zone:zoneid, bool:main);
-forward OnPlayerLeaveZone(playerid, Zone:zoneid, bool:main);
+forward OnPlayerEnterZone(playerid, Zone:zoneid);
+forward OnPlayerLeaveZone(playerid, Zone:zoneid);
 ```
 <!--
 Write your code documentation or examples here. If your library is documented in
