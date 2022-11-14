@@ -1,5 +1,5 @@
 /*
- *		samp-zones 1.0.0: zones.inc
+ *		samp-mapzones 1.0.0: mapzones.inc
  *
  *  		Library rewritten / created by Veseon
  *
@@ -20,11 +20,11 @@
  *		Copyright (c) 2022 by Veseon
  */
 
-#if defined _samp_zones_included
+#if defined _samp_mapzones_included
     #endinput
 #endif
-#define _samp_zones_included
-#pragma library zones
+#define _samp_mapzones_included
+#pragma library mapzones
 
 //---------------------------------------------------------------------------------------------------
 
